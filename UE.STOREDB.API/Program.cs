@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using MovieDB.DOMAIN.Core.Interfaces;
 using MovieDB.DOMAIN.Infrastructure.Data;
+using MovieDB.DOMAIN.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services
     .AddDbContext<MovieDbueContext>
     (options => options.UseSqlServer(cnx));
 
+builder.Services.AddTransient<IDirectorRepository, DirectorRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
